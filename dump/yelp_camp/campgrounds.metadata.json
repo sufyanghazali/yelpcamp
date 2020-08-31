@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"}],"uuid":"b87a19b05bc64a3cbc65bb1c2c49b7a8","collectionName":"campgrounds"}

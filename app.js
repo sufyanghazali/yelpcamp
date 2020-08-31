@@ -1,6 +1,6 @@
 const express = require('express'),
     app = express(),
-    port = 3000,
+    PORT = 3000,
     bodyParser = require("body-parser"), // parses incoming req bodies available under req.body
     flash = require("connect-flash"),
     mongoose = require("mongoose"),
@@ -15,9 +15,14 @@ const commentRoutes = require("./routes/comments"),
     indexRoutes = require("./routes/index");
 
 // Connect to database
-mongoose.connect("mongodb://localhost/yelp_camp", {
+mongoose.connect("mongodb+srv://sufyan:mongodb123@cluster0.bpyr4.mongodb.net/yelp_camp?retryWrites=true&w=majority", {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true
+}).then(() => {
+    console.log("Connected to DB!");
+}).catch(err => {
+    console.log(`ERROR: ${err}`);
 });
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -33,7 +38,6 @@ app.use(require("express-session")({
     resave: false,
     saveUninitialized: false
 }));
-
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -53,6 +57,6 @@ app.use(indexRoutes);
 app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 
-app.listen(port, () => {
+app.listen(PORT, () => {
     console.log("Server started");
 });
