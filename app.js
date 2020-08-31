@@ -1,6 +1,6 @@
 const express = require('express'),
     app = express(),
-    PORT = 3000,
+    PORT = process.env.PORT || 3000,
     bodyParser = require("body-parser"), // parses incoming req bodies available under req.body
     flash = require("connect-flash"),
     mongoose = require("mongoose"),
